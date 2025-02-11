@@ -1,0 +1,21 @@
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    color: rgb(120, 120, 120);
+    height: 2rem;
+    padding: 1rem;
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    list-style: none;
+}
+
+.links-item:hover {
+    color: black;
+}
