@@ -3,4 +3,7 @@
     justify-content: space-around;
     padding: 2rem;
     align-items: center;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
 }

@@ -1,16 +1,16 @@
 import './Item.css'
 
-function Item(props) {
+function Item({ nombre, precio }) {
 
     function agregarAlCarrito(){
-        console.log("Agregaste al carrito", props)
+        console.log("Agregaste al carrito", nombre)
     }
 
     return (
             <div className='card'>
-                  <h2>{props.nombre }</h2>
-                  <h3>Precio: ${props.precio}</h3>
-                  <button onClick={() => agregarAlCarrito()}>Agregar al carrito</button>
+                  <h2>{nombre || "SIN STOCK"}</h2>
+                  <h3>Precio: {precio || "NO DISPONIBLE PARA SU COMPRA"}</h3>
+                  <button disabled={!nombre} onClick={() => agregarAlCarrito()}>Agregar al carrito</button>
            </div>
     )
     

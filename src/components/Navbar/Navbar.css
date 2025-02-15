@@ -1,10 +1,15 @@
 .nav-bar {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    background-color: #1a1a1a; /* Fondo oscuro al hacer scroll */
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
     width: 100%;
-    color: rgb(120, 120, 120);
-    height: 2rem;
-    padding: 1rem;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 .links {
@@ -17,5 +22,5 @@
 }
 
 .links-item:hover {
-    color: black;
+    color: rgb(225, 191, 0); /* Dorado al hacer hover */
 }
