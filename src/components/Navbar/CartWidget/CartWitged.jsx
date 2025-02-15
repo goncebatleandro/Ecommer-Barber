@@ -2,7 +2,7 @@ import './CartWidget.css'
 
 function CartWidget() {
     return (
-            <p>Ícono del carrito (3)</p>
+            <p className="bi bi-cart">(3)</p>
     );
     
 };
