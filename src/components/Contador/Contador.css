@@ -1,0 +1,29 @@
+.contador-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 15%;
+}
+
+.btn-contador{
+    padding: 10px 20px;
+    background-color: white;
+    color: #000000; /* Texto oscuro */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-contador:hover {
+    background-color: #e6b800; 
+    transform: scale(1.05);
+}

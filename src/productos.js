@@ -1,21 +1,31 @@
-const productos = [
+ export const productos = [
     {
         id: 1,
         nombre: "Producto 1",
         precio: 100,
         img: "/assets/protector.jpeg",
+        categoria: "accesorios para el cabello"
     },
     {
         id: 2,
         nombre: "Producto 2",
-        precio: 100,
+        precio: 150,
         img: "/assets/texturizador.png",
+        categoria: "accesorios para el cabello"
     },
     {
         id: 3,
         nombre: "Producto 3",
-        precio: 100,
+        precio: 200,
         img: "/assets/pomada.png",
+        categoria: "accesorios para el cabello"
+    },
+    {
+        id: 4,
+        nombre: "Producto 4",
+        precio: 75,
+        img: "/assets/pomada.png",
+        categoria: "accesorios para el cabello"
     },
 ];
 

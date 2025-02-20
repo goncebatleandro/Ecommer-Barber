@@ -5,11 +5,11 @@
     background-color: #1a1a1a; /* Fondo oscuro al hacer scroll */
     color: white;
     padding: 10px 20px;
-    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease;
+    height: 4rem;
 }
 
 .links {

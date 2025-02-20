@@ -1,0 +1,37 @@
+.container-cards {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    align-items: center;
+    height: 50vh;
+    margin: 0;
+    border-radius: 0;
+}
+
+.saludo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.container-filter {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #000000; /* Texto oscuro */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e6b800; 
+    transform: scale(1.05);
+}
