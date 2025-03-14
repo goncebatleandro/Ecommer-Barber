@@ -1,0 +1,30 @@
+.card-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    width: 70vw;
+    height: 45vh;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: solid 2px grey;
+    background-color: #1a1a1a; /* Fondo oscuro al hacer scroll */
+    color: white;
+}
+
+.card-detail button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #000000; /* Texto oscuro */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card-detail button:hover {
+    background-color: #e6b800; 
+    transform: scale(1.05);
+}
