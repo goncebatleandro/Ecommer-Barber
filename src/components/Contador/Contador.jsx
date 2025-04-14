@@ -1,26 +1,17 @@
-import { useState } from 'react';
+import { useAppContext } from '../../context/context';
 import './Contador.css'
 
 
-function Contador() {
+function Contador({stock}) {
 
-    const [numero, setNumero] = useState(0);
-
-    const modificarNumero = (operacion) => {
-        if(operacion === "+"){
-            setNumero(numero + 1);
-        } else {
-            setNumero(numero - 1);
-        };
-    };
+    const {contador, setContador} = useAppContext();
 
     return (
         <div className='contador-container'>
-            <h1>Contador</h1>
             <div className='buttons-container'>
-                <button className='btn-contador' onClick={() => modificarNumero("-")}>-</button>
-                <p id='numero'>{numero}</p>
-                <button className='btn-contador' onClick={() => modificarNumero("+")}>+</button>
+                <button disabled={contador === 1} className='btn-contador' onClick={() => setContador(contador - 1)}>-</button>
+                <p id='numero'>{contador}</p>
+                <button disabled={contador === stock} className='btn-contador' onClick={() => setContador(contador + 1)}>+</button>
             </div>
         </div>
     )

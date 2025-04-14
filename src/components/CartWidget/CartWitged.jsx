@@ -1,8 +1,12 @@
+import { useAppContext } from '../../context/context';
 import './CartWidget.css'
 
 function CartWidget() {
+
+    const {carrito} = useAppContext();
+
     return (
-            <p className="bi bi-cart">(1)</p>
+            <p onClick={() => console.log(carrito)} className="bi bi-cart">({carrito.length})</p>
     );
     
 };

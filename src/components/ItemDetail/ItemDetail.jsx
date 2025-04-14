@@ -3,6 +3,8 @@ import './ItemDetail.css';
 import { fetchData } from '../../FetchData';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import { useAppContext } from '../../context/context';
+import Contador from '../Contador/Contador';
 
 function ItemDetail() {
 
@@ -10,10 +12,7 @@ function ItemDetail() {
 
     const [detalle, setDetalle] = useState(null);
 
-    function agregarAlCarrito(){
-        console.log("Agregaste al carrito", nombre)
-    };
-
+    const { agregarAlCarrito, contador } = useAppContext();
 
     useEffect(()  =>{   
       fetchData().then(response => {
@@ -41,7 +40,10 @@ function ItemDetail() {
                   {
                     detalle.oferta && <p>PRODUCTO EN OFERTA</p>
                 }
-                  <button disabled={detalle.stock === 0} onClick={() => agregarAlCarrito()}>Agregar al carrito</button>
+                {
+                  detalle.stock && <Contador stock={detalle.stock} />
+                }
+                  <button disabled={detalle.stock === 0} onClick={() => agregarAlCarrito({id: detalle.id, nombre: detalle.nombre, precio: detalle.precio, cantidad: contador})}>Agregar al carrito</button>
                   <Link to="/">
                   <button >Volver al inicio</button>
                   </Link>
