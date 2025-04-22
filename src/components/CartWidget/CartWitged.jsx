@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useAppContext } from '../../context/context';
 import './CartWidget.css'
 
@@ -6,7 +7,9 @@ function CartWidget() {
     const {carrito} = useAppContext();
 
     return (
-            <p onClick={() => console.log(carrito)} className="bi bi-cart">({carrito.length})</p>
+            <Link to="/cart">
+            <p className="bi bi-cart">({carrito.length})</p>
+            </Link>
     );
     
 };
