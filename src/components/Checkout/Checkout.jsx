@@ -3,12 +3,13 @@ import { useAppContext } from '../../context/context';
 import './Checkout.css'
 import { useContext, useState } from 'react';
 import { db } from '../../firebaseConfig';
-import {addDoc, collection} from "firebase/firestore"
+import {addDoc, collection, updateDoc} from "firebase/firestore"
 import context from 'react-bootstrap/esm/AccordionContext';
 import Cart from '../Cart/Cart';
 
 function Checkout() {
 
+    const { carrito, limpiarCarrito } = useAppContext();
     
     const navigate = useNavigate();
 
@@ -31,13 +32,30 @@ function Checkout() {
     const funcionFormulario = (evento) => {
         evento.preventDefault();
         let ordersCollection = collection(db, "orders");
-
+    
         let order = {
             buyer: formData,
+            items: carrito.map(producto => ({
+                id: producto?.id ?? "sin-id",
+                title: producto?.title ?? "sin-título",
+                price: producto?.price ?? 0,
+                quantity: producto?.cantidad ?? 1,
+            })),
+            total: carrito.reduce((acc, prod) => acc + (prod.price ?? 0) * (prod.cantidad ?? 1), 0),
+            date: new Date()
         };
-        addDoc ( ordersCollection, order).then(res => setOrderId (res.id));
+    
+        console.log("Orden final guardada:", order);
+        addDoc(ordersCollection, order).then(res => {
+            setOrderId(res.id);
+            limpiarCarrito();
+        });
 
-        
+        let productsCollection = collection(db, "productos")
+        order.items.forEach (producto =>{
+            let refDoc = doc(productsCollection, producto.id)
+            updateDoc(refDoc, {stock: producto.stock - producto.quantity })
+        });
     };
 
     // const crearOrden = (evento) => {
