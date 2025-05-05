@@ -5,53 +5,20 @@ import './ItemListContainer.css'
 import ItemDetail from '../ItemDetail/ItemDetail';
 import Loader from '../Loader/Loader';
 import { useParams } from 'react-router-dom';
+import { db } from '../../firebaseConfig';
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import productos from '../../productos';
 
 
 function ItemListContainer() {
 
     const [todosLosProductos, setTodosLosProductos] = useState([]); //Base de datos local
     const [misProductos, setMisProductos] =  useState([]);
-    const [loading, setLoading] = useState (true);
     const [productoActual, setProductoActual] = useState("");
+    const [loading, setLoading] = useState (true);
+
 
     const {categoria} = useParams();
-
-    // const usarFiltro = (filtro, id) => {
-    //     switch (filtro) {
-    //         case "Ninguno":
-    //             setDetalleFiltrado(false);
-    //             setMisProductos([]);
-    //             break;
-    //         case "Todos":
-    //             setDetalleFiltrado(false);
-    //             setMisProductos(todosLosProductos);
-    //             break;
-    //         case "Menor precio":
-    //             setDetalleFiltrado(false);
-    //             setMisProductos(todosLosProductos.filter(el => el.precio < 100));
-    //                 break;
-    //         case "Mayor precio":
-    //             setDetalleFiltrado(false);
-    //             setMisProductos(todosLosProductos.filter(el => el.precio >= 100));
-    //                 break;
-    //         case "Detalle":
-    //             setDetalleFiltrado(true);
-    //             setMisProductos(todosLosProductos.filter(el => el.id === id));
-    //                 break;
-
-    //         default:
-    //             break;
-    //     };
-    // };
-
-    // const verDetalle = (id) => {
-    //     setProductoActual(id);
-    //     setTimeout(() => {
-    //         usarFiltro("Detalle");
-    //     }, 500);   
-    // };
-
-
 
     useEffect(() => {
         if(todosLosProductos.length === 0){
@@ -77,7 +44,24 @@ function ItemListContainer() {
             }
         },[categoria]);
 
-
+        useEffect (()=> {
+            
+            let productsCollection = collection(db, "productos");
+            let consulta = productsCollection
+            if( categoria ){
+                let productsCollectionFiltered = query( 
+                    productsCollection, 
+                    where("categoria", "==", categoria));
+                consulta = productsCollectionFiltered;
+            }
+            
+            getDocs(consulta).then((res)=>{
+            let nuevoArray = res.docs.map((elemento)=> {
+                    return {id: elemento.id, ...elemento.data()}
+                });
+                setMisProductos(nuevoArray);
+            });
+        },[categoria]);
             
                     // fetchData().then(response => {
                     //     if(categoria){
@@ -104,6 +88,13 @@ function ItemListContainer() {
                     //     body: "To complete"
                     // }).then(data => console.log(data));
 
+// const cargarProductos = () => {
+//     let refCollection = collection(db, "productos");
+
+//     productos.forEach((elemento )=>{
+//         addDoc(refCollection, elemento  );
+//     })
+// } ;
             
 
     return (
@@ -130,6 +121,7 @@ function ItemListContainer() {
                         )
                 })
             }
+            {/* <button onClick={cargarProductos}>Cargar</button> */}
         </div>
         </>
     )

@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import { useAppContext } from '../../context/context';
 import Contador from '../Contador/Contador';
+import { db } from '../../firebaseConfig';
+import {collection, getDoc, doc } from "firebase/firestore";
 
 function ItemDetail() {
 
@@ -15,14 +17,11 @@ function ItemDetail() {
     const { agregarAlCarrito, contador } = useAppContext();
 
     useEffect(()  =>{   
-      fetchData().then(response => {
-          const detalleDelProducto = response.find(el => el.id === parseInt(id));
-          setDetalle(detalleDelProducto);
-  })
-
-    .catch(err => console.error(err));
-
-
+      let refCollection = collection(db, "productos");
+      let refDoc = doc(refCollection, id);
+      getDoc(refDoc).then(res => {
+        setDetalle ({id: res.id, ...res.data()});
+      })
     },[id]);
 
     return (
