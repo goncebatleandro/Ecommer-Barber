@@ -12,6 +12,8 @@ function Checkout() {
     
     const navigate = useNavigate();
 
+    const [orderId, setOrderId] = useState(null);
+
     const [formData, setFormData] = useState({
         nombre: "",
         correo: "",
@@ -26,17 +28,16 @@ function Checkout() {
         });
     };
 
-    const {carrito} = useAppContext();
-
     const funcionFormulario = (evento) => {
         evento.preventDefault();
         let ordersCollection = collection(db, "orders");
 
         let order = {
             buyer: formData,
-            items: carrito,
         };
-        addDoc ( ordersCollection, order);
+        addDoc ( ordersCollection, order).then(res => setOrderId (res.id));
+
+        
     };
 
     // const crearOrden = (evento) => {
@@ -55,12 +56,17 @@ function Checkout() {
 
     return (
            <div style={{display: "flex", flexDirection: "column"}}>
-              <form onSubmit={funcionFormulario}>
+
+            {
+                orderId ? <h2>Gracias por la compra en Aviles-baber, tu comprobante es : {orderId}</h2> : 
+                <form onSubmit={funcionFormulario}>
                     <input type="text" placeholder='Nombre' name='nombre' value={formData.nombre} onChange={modificarInput}/>
                     <input type="text" placeholder='Correo' name='correo' value={formData.correo} onChange={modificarInput}/>
                     <input type="text" placeholder='Telefono' name='telefono' value={formData.telefono} onChange={modificarInput}/>
                     <input type="submit" value="Enviar"/>
               </form>
+            }
+
            </div>
     );
     
