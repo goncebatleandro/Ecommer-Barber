@@ -1,6 +1,70 @@
-* {
+/* * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, sans-serif;
-    }
+    } *
+
+
+    /* Importamos la fuente */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-dark: #121212;
+  --secondary-dark: #1a1a1a;
+  --gold-accent: #d4af37;
+  --light-text: #f5f5f5;
+  --dark-text: #333;
+  --brown-accent: #8B4513;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--primary-dark);
+  color: var(--light-text);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--gold-accent);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #f5d67b;
+}
+
+/* Clases utilitarias */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--gold-accent);
+  color: var(--dark-text);
+}
+
+.btn-primary:hover {
+  background-color: #f5d67b;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
